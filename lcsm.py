@@ -17,11 +17,11 @@ lcsm=""
 
 string=d[label]
 
-for i in range(0,len(string)):
+for i in xrange(len(string)):
     for j in range(i,len(string)):
-        subs=string[i:j+1]
-        if len(subs) < len(lcsm):
+        if (j+1-i) < len(lcsm):
             continue
+        subs=string[i:j+1]
         c = 0
         for k2 in d.keys():
             if k2 == label:

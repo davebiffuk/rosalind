@@ -15,23 +15,23 @@ while True:
 
 lcsm=""
 
+# pick the last one to work from
 string=d[label]
 
-for i in xrange(len(string)):
-    for j in range(i,len(string)):
-        if (j+1-i) < len(lcsm):
-            continue
-        subs=string[i:j+1]
+# len(string) - n  is the length of substring to consider
+for n in range(0, len(string)):
+    for k in range(0, n+1):
+        sub=string[k:k+len(string)-n]
+        #print "considering substring length ", len(string)-n, " from pos", k, sub
         c = 0
         for k2 in d.keys():
             if k2 == label:
                 continue
-            if subs in d[k2]:
-                c += 1
+            if sub not in d[k2]:
+                break # no point checking any further
+            c += 1
         if c == count-1:
-            if len(subs) > len(lcsm):
-                lcsm = subs
-                #print lcsm
-
-print lcsm
-
+            print sub
+            break
+    if c == count-1:
+        break
